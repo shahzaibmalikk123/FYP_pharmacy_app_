@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View,Text,SafeAreaView,TextInput,useState,Image} from 'react-native';
+import { View,Text,SafeAreaView,TextInput,useState,Image,Button} from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import { COLORS, icons, SIZES, images, FONTS } from '../constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -8,6 +8,7 @@ import {PracticeProvider,ContextP} from "../context";
 import { useStateContext } from "../context";
 import { useContext } from "react";
 import {auth }from "../firebase";
+import * as ImagePicker from "expo-image-picker";
 
 export const Profile=({navigation})=>{
     const [user, setUser] = React.useState(null);
@@ -99,6 +100,15 @@ export const Profile=({navigation})=>{
         }
         getUser();
     },[])
+    
+    
+    useEffect(() => {
+        console.log(user);
+    }, [user])
+    const pickImage = async () => {
+        navigation.navigate("UploadReports")
+        
+      };
     return(
         
         <View style={{flex:1,alignItems:'center',paddingHorizontal:20,paddingTop:40}}>
@@ -107,12 +117,15 @@ export const Profile=({navigation})=>{
                 width:'100%',
                 paddingVertical:20,
                 alignItems:'center',
+                
+                
             }}>
-                <View style={{height:'100%',width:'22%',justifyContent:'center',alignItems:'center',borderRadius:60,backgroundColor:'lightgrey'}}>
+                <View style={{height:'100%',width:'22%',justifyContent:'center',alignItems:'center',overflow:'hidden',borderRadius:60,backgroundColor:'lightgrey'}}>
                     <Image 
-                        style={{height:'60%',}}
-                        source={images.avatar_3}
+                        source={images.hamzainam || {uri: user?.photo }}
+                        style={{height:'100%'}}
                         resizeMode="contain"
+
                     />
                 </View>
                 
@@ -133,25 +146,40 @@ export const Profile=({navigation})=>{
                 alignItems:'center',
             }}>
                 
-                <View style={{flexDirection:'row',height:'15%',width:'100%',flexDirection:'row',alignItems:'center'}}>
+                <View style={{flexDirection:'row',height:'15%',width:'100%',flexDirection:'row',alignItems:'center',borderBottomWidth:0.3,borderBottomEndRadius:2}}>
                     <View style={{alignItems:'center',height:'100%',alignItems:'center',justifyContent:'center'}}>
                         <Icon  name='call-outline' size={25} color="grey"/>
                     </View>
                     <Text style={{marginLeft:'3%',fontWeight:'500',color:'grey',fontSize:18}}>+92 3011234789</Text>
                 </View>
-                <View style={{flexDirection:'row',height:'15%',width:'100%',flexDirection:'row',alignItems:'center'}}>
+                <View style={{flexDirection:'row',height:'15%',width:'100%',flexDirection:'row',alignItems:'center',borderBottomWidth:0.3,borderBottomEndRadius:2}}>
                     <View style={{alignItems:'center',height:'100%',alignItems:'center',justifyContent:'center'}}>
                         <Icon  name='mail-outline' size={25} color="grey"/>
                     </View>
                     <Text style={{marginLeft:'3%',fontWeight:'500',color:'grey',fontSize:18}}>{user?.email}</Text>
                 </View>
-                <Pressable onPress={()=>navigation.navigate("Appointments",{appointments})} style={{flexDirection:'row',height:'15%',width:'100%',flexDirection:'row',alignItems:'center'}}>
+                <Pressable onPress={()=>navigation.navigate("Appointments",{appointments})} style={{flexDirection:'row',height:'15%',width:'100%',flexDirection:'row',alignItems:'center',borderBottomWidth:0.3,borderBottomEndRadius:2}}>
                     <View style={{alignItems:'center',height:'100%',alignItems:'center',justifyContent:'center'}}>
                         <Icon  name='book-outline' size={25} color="grey"/>
                     </View>
                     <Text style={{marginLeft:'3%',fontWeight:'500',color:'grey',fontSize:18}}>View Appointments</Text>
                 </Pressable>
-                <View style={{height:'45%'}}></View>
+                <Pressable onPress={()=>navigation.navigate("OrderHistory")} style={{flexDirection:'row',height:'15%',width:'100%',flexDirection:'row',alignItems:'center',borderBottomWidth:0.3,borderBottomEndRadius:2}}>
+                    <View style={{alignItems:'center',height:'100%',alignItems:'center',justifyContent:'center'}}>
+                        <Icon  name='book-outline' size={25} color="grey"/>
+                    </View>
+                    <Text style={{marginLeft:'3%',fontWeight:'500',color:'grey',fontSize:18}}>Order History</Text>
+                </Pressable>
+                <Pressable onPress={()=>pickImage()}   style={{flexDirection:'row',height:'15%',width:'100%',flexDirection:'row',alignItems:'center',borderBottomWidth:0.3,borderBottomEndRadius:2}}>
+                    <View style={{alignItems:'center',height:'100%',alignItems:'center',justifyContent:'center'}}>
+                        <Icon  name='images-outline' size={25} color="grey"/>
+                    </View>
+                                        
+                    <Text style={{marginLeft:'3%',fontWeight:'500',color:'grey',fontSize:18}}>Upload Reports</Text>
+                    
+                </Pressable>
+                
+                <View style={{height:'15%'}}></View>
                 <Pressable 
                     onPress={()=>logout()} 
                     style={{flexDirection:'row',height:'10%',width:'100%',alignItems:'center',backgroundColor:'teal',justifyContent:'center',borderRadius:30,}}>

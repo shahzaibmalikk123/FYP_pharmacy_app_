@@ -1,7 +1,7 @@
 import { StatusBar } from 'react-native';
 import { StyleSheet, Text, View ,Image,Button, TouchableOpacity, ImageBackground,SafeAreaView,Pressable,Animated} from 'react-native';
 import React, {useState, useContext } from 'react';
-import { OrderDelivery,Categories,Checkout,Login,LoginScreen,SignUp,Selector,LabTests,LabTestsDetails,PatientDetails,Appointments}  from "./Index";
+import { OrderDelivery,Categories,Checkout,Login,LoginScreen,SignUp,Selector,LabTests,LabTestsDetails,PatientDetails,Appointments,OrderHistory, UploadReports}  from "./Index";
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -32,7 +32,8 @@ export const AllScreensStack=()=>{
           <Stack.Screen name='LabTestsDetails' component={LabTestsDetails}/>
           <Stack.Screen name='PatientDetails' component={PatientDetails}/>
           <Stack.Screen name='Appointments' component={Appointments}/>
-          
+          <Stack.Screen name='OrderHistory' component={OrderHistory}/>
+          <Stack.Screen name="UploadReports" component={UploadReports}/>
           
         </Stack.Navigator>
       </NavigationContainer>

@@ -25,6 +25,7 @@ export const PracticeProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [loggedInUser, setLoggedInUser] = useState({});
     const [doctors, setDoctors] = React.useState({});
+    const [imageUri, setImageUri] = React.useState(null);
 
     // to find the user details in the db
     const findUser = async (email) => {
@@ -119,6 +120,8 @@ export const PracticeProvider = ({ children }) => {
                     findUser,
                     doctors,
                     setDoctors,
+                    imageUri,
+                     setImageUri
                 }}
             >
                 {children}

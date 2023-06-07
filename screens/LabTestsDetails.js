@@ -113,7 +113,7 @@ export const LabTestsDetails = ({ route, navigation }) => {
 
                         }}
                     /> */}
-                    <Icon name="list" size={35} color="teal" />
+                    <Image source={images.logo} resizeMode="contain" style={{ width: 35, height: 35,  }} color="teal" />
                 </Pressable>
             </View>
         );
@@ -179,7 +179,7 @@ export const LabTestsDetails = ({ route, navigation }) => {
                             </Text>
                             
                         </View>
-                        <View style={{height:'80%',}}>
+                        <ScrollView style={{height:'80%',}}>
                             <View style={{height:'8%',}}>
                                 <Text style={{fontSize:SIZES.h4,fontWeight:'bold',lineHeight:23}}>
                                     How Lab Test Works?
@@ -196,19 +196,19 @@ export const LabTestsDetails = ({ route, navigation }) => {
 
                                     <Text style={{fontWeight:'bold',fontSize:17}}>Description</Text> 
                                     <Text style={{lineHeight:21}} ellipsizeMode='tail'numberOfLines={4} >
-                                        {item?.description.slice(0,170)}...<Pressable onPress={() =>{ setItemsModalDescription(true)}}><Text style={{fontWeight:"bold"}}>See More</Text></Pressable>
+                                        {item?.description.slice(0,120)}...<Pressable onPress={() =>{ setItemsModalDescription(true)}}><Text style={{fontWeight:"bold"}}>See More</Text></Pressable>
                                     </Text>
                                     <Text style={{fontWeight:'bold',fontSize:17}}>Details</Text>  
                                 
                                     <Text style={{lineHeight:21}} ellipsizeMode='tail'numberOfLines={4}>
-                                        {item?.details.slice(0,170)}...<Pressable onPress={() =>{ setItemsModal(true)}}><Text style={{fontWeight:"bold"}}>See More</Text></Pressable>
+                                        {item?.details.slice(0,120)}...<Pressable onPress={() =>{ setItemsModal(true)}}><Text style={{fontWeight:"bold"}}>See More</Text></Pressable>
                                     </Text>
                             </View>
                             
 
                             
 
-                        </View>
+                        </ScrollView>
                         <View style={{height:'13%',width:"100%"}}>
                         <   Pressable
                                 onPress={()=>navigation.navigate("PatientDetails",{item})}
@@ -352,7 +352,7 @@ const styles = StyleSheet.create({
         flex: 1,
         //backgroundColor: COLORS.lightGray4,
         backgroundColor: "white",
-        paddingTop: Platform.OS === "android" ? 40 : 0,
+        paddingTop: Platform.OS === "android" ? 20 : 0,
     },
     shadow: {
         shadowColor: "#000",

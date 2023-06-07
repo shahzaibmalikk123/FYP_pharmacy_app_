@@ -13,6 +13,8 @@ import LabTests from "./LabTests";
 import LabTestsDetails from "./LabTestsDetails";
 import PatientDetails from "./PatientDetails";
 import Appointments from "./Appointments";
+import OrderHistory from "./OrderHistory";
+import UploadReports from "./UploadReports";
 
 export{
    Home,
@@ -29,5 +31,7 @@ export{
    LabTests,
    LabTestsDetails,
    PatientDetails,
-   Appointments
+   Appointments,
+   OrderHistory,
+   UploadReports
 }

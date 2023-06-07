@@ -220,27 +220,11 @@ export const LabTests = ({ navigation }) => {
                         >
                             Get 10% Off On Checkups
                         </Text>
-                        <Text style={{paddingBottom:10}}>
+                        <Text style={{paddingBottom:10,fontWeight:'bold'}}>
                             on all tests and packages
                         </Text>
                         
-                        <Pressable
-                            style={{
-                                height: "35%",
-                                backgroundColor: "#F0846D",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                width: "70%",
-                                paddingHorizontal: 10,
-                                borderRadius: 10,
-                            }}
-                        >
-                            <Text
-                                style={{ fontWeight: "bold", color: "white" }}
-                            >
-                                Read More
-                            </Text>
-                        </Pressable>
+                        
                     </View>
                 </View>
 
@@ -367,7 +351,7 @@ const styles = StyleSheet.create({
         flex: 1,
         //backgroundColor: COLORS.lightGray4,
         backgroundColor: COLORS.lightGray,
-        paddingTop: Platform.OS === "android" ? 40 : 0,
+        paddingTop: Platform.OS === "android" ? 20 : 0,
     },
     shadow: {
         shadowColor: "#000",

@@ -14,6 +14,7 @@ import {
     Modal,
     Platform,
 } from "react-native";
+import Icon from 'react-native-vector-icons/Ionicons';
 import axios, { Axios } from "axios";
 import { COLORS, icons, SIZES, images, FONTS } from "../constants";
 import axiosInstance from "../axios/axiosInstance";
@@ -23,6 +24,7 @@ import { useStateContext } from "../context";
 export const Appointments=({ route, navigation })=>{
     
     const [appointmentList, setAppointmentList] = React.useState([]);
+    const [textColor , settextColor] =React.useState([]);
     const { appointments } = route.params;
     const { findUser,currentUser, doctors, setDoctors, getDoctors } = useStateContext();
     const [user, setUser]= React.useState({})
@@ -53,6 +55,23 @@ export const Appointments=({ route, navigation })=>{
               setAppointmentList(res.data)
               console.log('Appointments fetched:', res.data); // for debugging purposes only
           })
+          ;
+          switch (appointmentList?.status) {
+            case 'missed':
+              settextColor("red");
+              break;
+            case 'completed':
+              settextColor("green");
+              break;
+            case 'pending':
+              settextColor("yellow");
+              break;
+            default:
+              settextColor("black");
+              break;
+          }
+
+         
         }
         // const userAppointments = async () => {
         //   try{
@@ -101,43 +120,78 @@ export const Appointments=({ route, navigation })=>{
                   <Text style={styles.heading}>My Appointments</Text>
                 </View>
             </View>
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
             {appointmentList && appointmentList.map((appointment, index) => (
               
               
+              
+              
               <View key={appointment._id} style={styles.appointmentContainer}>
-                <View style={styles.infoContainer}>
-                  <Text style={styles.title}>Appointment ID</Text>
-                  <Text style={styles.value}>{appointment?.appointment_id}</Text>
+              <View style={{height:"12%",flexDirection:'row',marginBottom:"0%",alignItems:'center',}}>
+                <View style={{height:'70%',borderRadius:13,backgroundColor:'white',alignItems:'center',justifyContent:'center',width:'7%'}}>
+                  <Image style={{width:20,height:20}} source={icons.order_id} resizeMode="contain" />
                 </View>
-                <View style={styles.infoContainer}>
-                  <Text style={styles.title} numberOfLines={1}>Doctor name</Text>
-                  <Text style={styles.value}>{
-                    doctors.find(doctor => doctor._id === appointment.doctor_id)?.name || "Doctor"
-                    
-                  }
-                  </Text>
-                  {/* <Text style={styles.value}>{appointment?.doctor_id}</Text> */}
-                </View>
-                <View style={styles.infoContainer}>
-                  <Text style={styles.title} numberOfLines={1}>Patient id</Text>
-                  <Text style={styles.value}>{appointment?.patient_id}</Text>
-                </View>
-                <View style={styles.infoContainer}>
-                  <Text style={styles.title} numberOfLines={1}>Date</Text>
-                  <Text style={styles.value}>{appointment?.date}</Text>
-                </View>
-                <View style={styles.infoContainer}>
-                  <Text style={styles.title}>Time</Text>
-                  <Text style={styles.value}>{appointment?.time}</Text>
-                </View>
-                <View style={styles.infoContainer}>
-                  <Text style={styles.title}>Status</Text>
-                  <Text style={[styles.value, { color: "red" }]}>
-                    {appointment?.status}
-                  </Text>
-                </View>
+                <Text style={{paddingLeft:5}}>Appointment ID : </Text>
+                <Text style={{fontWeight:'bold'}}>{appointment?.appointment_id}</Text>
               </View>
+              <View style={{height:"22%",flexDirection:'row',}}>
+                <View style={{height:"52%",alignItems:'center',justifyContent:'center',borderRadius:20,backgroundColor:"white",width:'10%'}}>
+                  <Icon  name="calendar-outline" style={{color:'teal'}} size={18}/>
+                </View>
+                <View style={{paddingLeft:15,paddingTop:3,flexDirection:'column'}}>
+                  <Text style={{fontWeight:'bold'}}>Date & Time</Text>
+                  <Text style={{lineHeight:20}}>{new Date(appointment?.createdAt).toDateString()}</Text>
+                  <Text style={{lineHeight:20}}>{appointment?.time}</Text>
+                </View>
+                
+
+              </View>
+              <View style={{height:"10%",flexDirection:'row',marginBottom:"0%",alignItems:'center',}}>
+                
+                <Text style={{fontWeight:'bold',paddingLeft:5}}>Doctor's Info</Text>
+                
+              </View>
+              <View style={{height:"12%",flexDirection:'row',alignItems:'center'}}>
+                <View style={{height:"85%",alignItems:'center',justifyContent:'center',borderRadius:20,backgroundColor:"white",width:'9%'}}>
+                  <Icon  name="calendar-outline" style={{color:'teal'}} size={18}/>
+                </View>
+                <View style={{paddingLeft:18,paddingTop:3,flexDirection:'column'}}>
+                  <Text style={{fontWeight:'bold'}}>{
+                     doctors.find(doctor => doctor._id === appointment.doctor_id)?.name || "Doctor"
+                    
+                  }</Text>
+                  
+                </View>
+                
+
+              </View>
+              <View style={{height:"10%",flexDirection:'row',marginBottom:"0%",alignItems:'center',}}>
+                
+                <Text style={{fontWeight:'bold',paddingLeft:5}}>Patient's Info</Text>
+                
+              </View>
+              <View style={{height:"12%",flexDirection:'row',alignItems:'center'}}>
+                <View style={{height:"85%",alignItems:'center',justifyContent:'center',borderRadius:20,backgroundColor:"white",width:'9%'}}>
+                  <Icon  name="calendar-outline" style={{color:'teal'}} size={18}/>
+                </View>
+                <View style={{paddingLeft:18,paddingTop:3,flexDirection:'row'}}>
+                  <Text>ID : </Text>
+                  <Text style={{fontWeight:'bold'}}>{appointment?.patient_id}</Text>
+                  
+                </View>
+                
+
+              </View>
+              <View style={{height:'20%',alignItems:'center',flexDirection:'row'}}>
+                <View style={{height:'2%'}}></View>
+                <Text>Status : </Text>
+                <Text style={{color : 'red' , fontWeight:'bold' }}>{appointment?.status}</Text>
+                
+
+              </View>
+              
+            </View>
+
             ))}
           </ScrollView>
         </SafeAreaView>
@@ -161,8 +215,8 @@ export const Appointments=({ route, navigation })=>{
         paddingHorizontal: SIZES.padding,
       },
       appointmentContainer: {
-        backgroundColor: COLORS.white,
-        borderRadius: SIZES.radius,
+        backgroundColor: "#E5F6F2",
+        borderRadius: 12,
         padding: SIZES.padding,
         marginBottom: SIZES.padding,
         shadowOffset: {
@@ -172,6 +226,9 @@ export const Appointments=({ route, navigation })=>{
           shadowOpacity: 0.23,
           shadowRadius: 2.62,
           elevation: 4,
+          height:340,
+          padding:20,
+
         
       },
       infoContainer: {

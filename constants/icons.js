@@ -49,7 +49,7 @@ export const diabetes = require("../assets/icons/diabetes.png");
 export const blood = require("../assets/icons/blood.png");
 export const bloodclotting = require("../assets/icons/bloodclotting.png");
 export const cartIcon = require("../assets/icons/shopping-cart.png");
-
+export const order_id = require("../assets/icons/order_id.png");
 export default {
     back,
     car,
@@ -100,4 +100,5 @@ export default {
     blood,
     bloodclotting,
     diabetes,
+    order_id
 };

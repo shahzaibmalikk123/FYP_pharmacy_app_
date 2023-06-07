@@ -12,6 +12,7 @@ import {
     useState,
     ScrollView,
     Modal,
+    Platform
 } from "react-native";
 import { COLORS, icons, SIZES, images, FONTS } from "../constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -195,7 +196,7 @@ export const Home = ({ navigation }) => {
             <View
                 style={{
                     width: "100%",
-                    height: "30%",
+                    height: 200,
                     justifyContent: "center",
                     flexDirection: "column",
                     alignContent: "center",
@@ -241,31 +242,16 @@ export const Home = ({ navigation }) => {
                                 paddingBottom: 10,
                             }}
                         >
-                            How to Save your life from COVID-19
+                            Save your life from COVID-19
                         </Text>
-                        <Pressable
-                            style={{
-                                height: "45%",
-                                backgroundColor: "#F0846D",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                width: "70%",
-                                padding: 10,
-                                borderRadius: 30,
-                            }}
-                        >
-                            <Text
-                                style={{ fontWeight: "bold", color: "white" }}
-                            >
-                                Read More
-                            </Text>
-                        </Pressable>
+                        
                     </View>
                 </View>
 
                 <View
                     style={{
                         paddingLeft: SIZES.padding * 2,
+                        
                     }}
                 >
                     <Text style={{ fontWeight: "bold", fontSize: SIZES.h2 }}>
@@ -297,7 +283,7 @@ export const Home = ({ navigation }) => {
                         marginRight: SIZES.padding,
                         ...styles.shadow,
                         flexDirection: "column",
-                        width: 120,
+                        width: 100,
                         height: "100%",
                         flexWrap: "wrap",
                     }}
@@ -359,7 +345,7 @@ export const Home = ({ navigation }) => {
                     paddingBottom: 0,
                     justifyContent: "center",
                     alignItems: "center",
-                    height: "28%",
+                    height: 150,
                 }}
             >
                 <FlatList
@@ -646,7 +632,7 @@ export const Home = ({ navigation }) => {
                                         fontWeight: "bold",
                                     }}
                                 >
-                                    ${sumOrder()}
+                                    Rs {sumOrder()}
                                 </Text>
                             </View>
                             {/* View containing list of individual medicines and their subtotal */}
@@ -707,7 +693,7 @@ export const Home = ({ navigation }) => {
                                                             fontWeight: "bold",
                                                         }}
                                                     >
-                                                        ${item?.price}
+                                                        Rs {item?.price}
                                                     </Text>
                                                 </View>
                                             </View>
@@ -769,9 +755,12 @@ export const Home = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
-            {renderMedPic()}           
+            <ScrollView showsVerticalScrollIndicator={false}> 
+            {renderMedPic()}  
+                    
             {renderMainCategories()}
             {renderMedicines()}
+            </ScrollView>
             {cartModal()}
             
         </SafeAreaView>

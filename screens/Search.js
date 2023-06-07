@@ -2,7 +2,7 @@ import React from 'react';
 //import { StatusBar } from 'expo-status-bar';
 import { useStateContext } from "../context";
 import { useContext } from "react";
-import { TextInput,View,Text,SafeAreaView,Pressable,Image,FlatList,StyleSheet,ImageBackground,ScrollView,Alert} from 'react-native';
+import { TextInput,View,Text,SafeAreaView,Pressable,Image,FlatList,StyleSheet,ImageBackground,ScrollView,Alert,Platform} from 'react-native';
 
 import { COLORS , icons,SIZES,images,FONTS} from '../constants';
 

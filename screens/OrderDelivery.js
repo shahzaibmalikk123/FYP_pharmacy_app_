@@ -136,7 +136,7 @@ export const OrderDelivery = ({ route, navigation }) => {
         });
     }
 
-    function addFav() {}
+    
     function renderHeader() {
         return (
             <View style={{ flexDirection: "row", marginTop: 0 }}>
@@ -198,7 +198,7 @@ export const OrderDelivery = ({ route, navigation }) => {
 
                         }}
                     /> */}
-                    <Icon name="list" size={35} color="teal" />
+                    <Image source={images.logo} resizeMode="contain" style={{ width: 40, height: 40 }} />
                 </Pressable>
             </View>
         );
@@ -427,8 +427,7 @@ export const OrderDelivery = ({ route, navigation }) => {
                                                     width: 20,
                                                     ...FONTS.body3,
                                                     tintColor:
-                                                        priceRating <=
-                                                        medicines?.priceRating
+                                                        veryGood
                                                             ? "#F4CB04"
                                                             : "lightgray",
                                                 }}
@@ -850,7 +849,7 @@ const styles = StyleSheet.create({
         flex: 1,
         //backgroundColor: COLORS.lightGray4,
         backgroundColor: "white",
-        paddingTop: Platform.OS === "android" ? 40 : 0,
+        paddingTop: Platform.OS === "android" ? 20 : 0,
     },
     shadow: {
         shadowColor: "#000",

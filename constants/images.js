@@ -65,6 +65,8 @@ const labtest5 = require("../assets/images/labtest5.jpg");
 const medxCure1 = require("../assets/images/medxCure1.png");
 const medxCure = require("../assets/images/medxCure.png");
 const logo = require("../assets/images/logo.png");
+const hamzainam = require("../assets/images/hamzainam.png");
+const reports = require("../assets/images/reports.jpg");
 
 export default {
     avatar_1,
@@ -132,5 +134,7 @@ export default {
     labtest5,
     medxCure1,
     medxCure,
-    logo
+    logo,
+    hamzainam,
+    reports
 }

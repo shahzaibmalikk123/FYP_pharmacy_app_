@@ -9,6 +9,7 @@ import axiosInstance from "../axios/axiosInstance";
 import { useStateContext } from "../context";
 import { useContext } from "react";
 import { auth } from "../firebase";
+//import { GoogleSigninButton, statusCodes } from "reac";
 
 const LoginScreen = ({ navigation }) => {
     const {
@@ -39,6 +40,16 @@ const LoginScreen = ({ navigation }) => {
             console.error(error);
         }
     };
+    const handleGoogleLogin = async () => {
+        try {
+          await loginWithGoogle();
+          // Handle successful login, for example, navigate to the home screen
+          navigation.navigate("Home");
+        } catch (error) {
+          console.log(error);
+          // Handle login error, show an error message to the user
+        }
+      };
     // try {
     //   console.log(currentUser)
     //   currentUser = await login(auth, email, password);
@@ -55,13 +66,13 @@ const LoginScreen = ({ navigation }) => {
     //   console.log(error);
     // }
 
-    const handleGoogleLogin = async () => {
-        try {
-            const user = await loginWithGoogle();
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    // const handleGoogleLogin = async () => {
+    //     try {
+    //         const user = await loginWithGoogle();
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
     return (
         <SafeAreaView style={{ flex: 1, alignItems: "center" ,paddingTop: Platform.OS === "android" ? 40 : 0,}}>
@@ -211,6 +222,23 @@ const LoginScreen = ({ navigation }) => {
                         height: "0%",
                     }}
                 ></View>
+                <Pressable style={{height:'23%',borderRadius:10,justifyContent:'center',paddingHorizontal:10,alignItems:'center',shadowOpacity :"0.1",}}>
+                        <Text style={{fontWeight:'bold',color:'teal'}}>
+                            Or continue with
+                        </Text>
+                </Pressable>
+                    <View style={{width:'100%',height:'23%',flexDirection:'row',justifyContent:'center'}}>
+                        <Pressable 
+                            
+                            onPress={()=>handleGoogleLogin()}
+                            style={{height:'55%',backgroundColor:'lightgrey',width:'10%',alignItems:'center',justifyContent:'center'}}>
+                           <Icon size={20} color="teal"  name='logo-google'/>
+                        </Pressable>
+                        
+
+                        
+                        
+                    </View>
                 
                
             </View>

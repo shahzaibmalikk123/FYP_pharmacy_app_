@@ -18,13 +18,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier" : "com.shahzaib_malikk.pharmacyapp",
+      "buildNumber" : "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.shahzaib_malikk.pharmacyapp",
+      "versionCode" : "1"
     },
     "web": {
       "favicon": "./assets/favicon.png"
